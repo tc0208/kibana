@@ -49,6 +49,9 @@ RUN set -x \
 
 ENV PATH /opt/kibana/bin:$PATH
 
+RUN gosu kibana kibana plugin -i kibana/timelion
+
+
 COPY docker-entrypoint.sh /
 
 EXPOSE 5601
