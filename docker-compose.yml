@@ -1,0 +1,17 @@
+cadvisor:
+ image: google/cadvisor
+ command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=10.57.54.187:8086
+ ports:
+  - "9000:8080"
+ volumes:
+  - /:/rootfs:ro
+  - /var/run:/var/run:rw
+  - /sys:/sys:ro
+  - /var/lib/docker/:/var/lib/docker:ro
+
+kibana:
+ image: kibana-4.5
+ ports:
+  - "9999:5601"
+ environment:
+  - ELASTICSEARCH_URL=http://10.58.70.98:9200
